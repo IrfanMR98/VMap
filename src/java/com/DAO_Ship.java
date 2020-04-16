@@ -120,6 +120,26 @@ public class DAO_Ship {
         return ship;
         
     }
+    public ship retrieveOneShipID(String shipID) {
+        ship ship = new ship();
+        try {
+            String myQuery = "select  shipID from ship where shipID= ?";
+            PreparedStatement ps = connection.prepareStatement(myQuery);
+            ps.setString(1, shipID);
+            ResultSet myRs = ps.executeQuery();
+            while (myRs.next()) {
+
+                ship.setShipID(myRs.getString(1));
+              
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception is ; " + e);
+        }
+        return ship;
+        
+    }
     
 
     public int updateShip(ship ship) {
